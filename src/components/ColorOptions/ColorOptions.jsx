@@ -1,8 +1,9 @@
 const ColorOptions = ({ options, handleButtonClick }) => {
   return (
-    <div data-testid="color-options">
+    <div className="flex gap-10" data-testid="color-options">
       {options.map((option, index) => (
         <button
+          className="bg-slate-100 px-5 py-4 text-sm rounded-lg"
           key={index}
           onClick={() => handleButtonClick(option)}
         >

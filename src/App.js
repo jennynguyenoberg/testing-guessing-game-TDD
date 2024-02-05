@@ -44,7 +44,9 @@ const App = () => {
   }
 
   return (
-    <div data-testid="app">
+    <div
+    className="h-screen w-screen flex flex-col gap-6 justify-center items-center"
+    data-testid="app">
       <Header />
       <CorrectGuessesInARow count={correctGuessesInARow} data-testid="correct-guesses-in-a-row-value" />
       <ColorToGuess color={correctColor} data-testid="color-to-guess" />
