@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 
 describe("The page title renders and text is correct", () => {
   test("The page title renders on page load", () => {
