@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "../App";
 
-// dont focus on this function, it is just used to convert RGB to HEX
+// function to convert RGB to HEX
 function convertBackToHex(value) {
   let rgbValues = value.match(/\d+/g).map(Number);
   let correctColorInCorrectFormat = rgbToHex(
@@ -25,18 +25,17 @@ function convertBackToHex(value) {
 }
 
 describe("Render app and game functionality works as expected", () => {
-  test("Render app comonent", () => {
+  test("Render app component", () => {
     render(<App />);
     const app = screen.getByTestId("app");
 
     expect(app).toBeInTheDocument();
   });
 
-  test("If wrong guess is made render a wrong guess component", () => {
+  test("If wrong guess is made, render a wrong guess component", () => {
     render(<App />);
     const buttons = screen.getAllByRole("button");
     const correctColorInRGB = screen.getByTestId(/color-to-guess/i).style.backgroundColor;
-    // the function below just converts correctColor back to HEX format because Javascript automatically converted the HEX to rgb...
     const correctColor = convertBackToHex(correctColorInRGB);
     let wrongGuess = screen.queryByTestId("wrong-guess");
 
@@ -52,7 +51,7 @@ describe("Render app and game functionality works as expected", () => {
     expect(wrongGuess).toHaveTextContent(/wrong guess/i);
   });
 
-  test("If wrong guess is made change correct guesses in a row to 0", () => {
+  test("If wrong guess is made, change correct guesses in a row to 0", () => {
     render(<App />);
     const buttons = screen.getAllByRole("button");
     const correctColorInRGB = screen.getByTestId(/color-to-guess/i).style.backgroundColor;
@@ -67,7 +66,7 @@ describe("Render app and game functionality works as expected", () => {
     expect(correctGuessesInARowValue.textContent).toEqual("0");
   });
 
-  test("If user makes correct guess increase correct guesses in a row value by 1", () => {
+  test("If user makes correct guess, increase correct guesses in a row value by 1", () => {
     render(<App />);
     let buttons = screen.getAllByRole("button");
     let correctColorInRGB = screen.getByTestId(/color-to-guess/i).style.backgroundColor;
@@ -96,7 +95,7 @@ describe("Render app and game functionality works as expected", () => {
     expect(correctGuessesInARowValue.textContent).toEqual("2");
   });
 
-  test("If user makes correct guess generate new hex colors for each button", () => {
+  test("If user makes correct guess, generate new hex colors for each button", () => {
     render(<App />);
     const buttons = screen.getAllByRole("button");
     const correctColorInRGB = screen.getByTestId(/color-to-guess/i).style.backgroundColor;
@@ -114,7 +113,7 @@ describe("Render app and game functionality works as expected", () => {
     });
   });
 
-  test("If user makes correct guess generate a new color for user to guess", () => {
+  test("If user makes correct guess, generate a new color for user to guess", () => {
     render(<App />);
     const buttons = screen.getAllByRole("button");
     const correctColorInRGB = screen.getByTestId(/color-to-guess/i).style.backgroundColor;
@@ -133,3 +132,4 @@ describe("Render app and game functionality works as expected", () => {
     expect(correctColor).not.toEqual(newCorrectColor);
   });
 });
+
